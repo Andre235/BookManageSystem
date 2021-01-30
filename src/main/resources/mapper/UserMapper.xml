@@ -19,8 +19,19 @@
         on ui.gra_id = gra.id
         inner join cclass ccl
         on ui.ccl_id = ccl.id
-        where col.col_name = #{arg0} and prof.prof_name = #{arg1}
-        and gra.gra_name = #{arg2} and ccl.ccl_name = #{arg3}
+        WHERE 1 = 1
+        <if test="arg0 != null and arg0 != ''">
+            AND col.col_name = #{arg0}
+        </if>
+        <if test="arg1 != null and arg1 != ''">
+            AND prof.prof_name = #{arg1}
+        </if>
+        <if test="arg2 != null and arg2 != ''">
+            AND gra.gra_name = #{arg2}
+        </if>
+        <if test="arg3 != null and arg3 != ''">
+            AND ccl.ccl_name = #{arg3}
+        </if>
     </select>
 
     <select id="findAllUsersByPage" resultType="com.dev.books.pojo.User">
